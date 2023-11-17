@@ -92,6 +92,18 @@ def file_cleaning(file :str):
 
     return content_string
 
+def TF(text : str) -> dict:
+    '''
+    function that takes a string as a parameter
+    returns a dictionary associating with each word the number of times it appears in the string
+    '''
+    TFdictionnary = {}
+    for word in ' '.split(text):
+        if word in TFdictionnary:
+            TFdictionnary[word] = TFdictionnary[word]+1
+        else:
+            TFdictionnary[word]
+    return TFdictionnary
 
 
 
