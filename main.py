@@ -33,7 +33,17 @@ for speech_file in files_names:
 
 
 
+# Menu
 
+print("To show :" + "\n"
+      "- The list of least important words : Least" + "\n"
+      "- The list of more important words : More" + "\n"
+      "- The most repeated word(s) by President Chirac : Chirac" + "\n"
+      "- The name(s) of the president(s) who spoke of the 'Nation' and the one who repeated it the most times : Nation" + "\n"
+      "- The first president to talk about climate (“climat”) and/or ecology (“écologie”) : Climate " + "\n"
+      "- the so-called 'unimportant' words : Unimportant" + "\n"
+      "- which word(s) did all the president mention : All" + "\n"
+)
 
 
 
