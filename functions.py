@@ -15,7 +15,7 @@ def finding_names(files_names : list) -> list:
     names = set()
     for file in files_names:
         # taking the string with Nomination_ and .txt
-        name= file[11:-4]
+        name = file[11:-4]
         # removing the number at end if there is one
         if 48 <= ord(name[-1]) <= 57:
             name = name[:-1]
@@ -35,7 +35,7 @@ def new_folder(name):
     Creating a new folder, do nothing if it already exists (I saw how to catch an error last year)
     '''
     try :
-        os.mkdir('name')
+        os.mkdir(name)
     except FileExistsError:
        pass
 
@@ -69,10 +69,10 @@ def read_str_in_file(file:str) -> str:
     with open(file, 'r') as f:
         return f.readline()[:-1]
 
-def file_cleaning(file :str):
+def file_cleaning(file :str) -> str:
     '''
     Take a file name, the file has to be a one line file (only the first line in treated)
-    Return the content of the file without punctuation, only words separated by spaces
+    Return the content of the file without punctuation, only words separated by spaces, be careful there is a space at the end of the string
     '''
     with open(file, 'r') as f:
         line = f.readline()
@@ -101,7 +101,7 @@ def TF_creating(text : str) -> dict:
     TFdictionnary = {}
     for word in text.split(' '):
         if word in TFdictionnary:
-            TFdictionnary[word] = TFdictionnary[word]+1
+            TFdictionnary[word] = TFdictionnary[word] + 1
         else:
             TFdictionnary[word] = 1
     return TFdictionnary
