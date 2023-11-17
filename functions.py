@@ -58,13 +58,16 @@ def file_in_lowercase(file :str) -> str:
                 content_str += chr(ord(char) +32)
             else:
                 content_str += char
-    print(content_str)
     return content_str
 
+
+# Functions for text interaction
 def write_in_file(file:str, content : str):
     with open(file, 'w') as f:
         f.write(content)
-
+def read_str_in_file(file:str) -> str:
+    with open(file, 'r') as f:
+        return f.readline()[:-1]
 
 def file_cleaning(file :str):
     '''
@@ -83,8 +86,6 @@ def file_cleaning(file :str):
         else:
             word+=character
 
-    print(content)
-
     content_string = ''
     for word in content:
         if word != '':
@@ -92,20 +93,24 @@ def file_cleaning(file :str):
 
     return content_string
 
-def TF(text : str) -> dict:
+def TF_creating(text : str) -> dict:
     '''
     function that takes a string as a parameter
     returns a dictionary associating with each word the number of times it appears in the string
     '''
     TFdictionnary = {}
-    for word in ' '.split(text):
+    for word in text.split(' '):
         if word in TFdictionnary:
             TFdictionnary[word] = TFdictionnary[word]+1
         else:
-            TFdictionnary[word]
+            TFdictionnary[word] = 1
     return TFdictionnary
 
-
+def IDF_creating(TFs : list) -> dict:
+    '''
+    Take a list of dictionnary: for each file the list contain the TF dictionnary of the file
+    returns a dictionary associating the IDF score with each word
+    '''
 
 
 
