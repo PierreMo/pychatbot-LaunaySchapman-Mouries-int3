@@ -1,3 +1,4 @@
+from text_treatment import *
 from functions import *
 
 ## PART I ##
@@ -36,7 +37,8 @@ for speech_file in files_names:
 for e in TF_list:
     print(e)
 
-
+IDF_corpus = IDF_creating("./cleaned/")
+print(IDF_corpus)
 
 # Menu
 
