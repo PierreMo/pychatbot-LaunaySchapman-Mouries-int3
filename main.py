@@ -40,6 +40,9 @@ for e in TF_list:
 IDF_corpus = IDF_creating("./cleaned/")
 print(IDF_corpus)
 
+# Printing the return of the TF_IDF function
+print(TF_IDF_creating("./cleaned/"))
+
 # Menu
 
 print("To show :" + "\n"
@@ -52,6 +55,25 @@ print("To show :" + "\n"
       "- which word(s) did all the president mention : All" + "\n"
 )
 
+user_input = input()
+
+match user_input :
+    case "Least" :
+        print(wordTD_IDF))
+    case "More" :
+        print(max(TD_IDF))
+    case "Chirac" :
+
+    case "Nation" :
+
+    case "Climate" :
+
+    case "Unimportant" :
+
+    case "All" :
+
+    case other :
+        print("Enter a word of the list please")
 
 
 

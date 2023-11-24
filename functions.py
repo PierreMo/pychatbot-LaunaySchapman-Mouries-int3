@@ -36,24 +36,22 @@ def IDF_creating(directory : str) -> dict:
     return IDF_dict
 
 
+def TF_IDF_creating(directory : str) -> tuple:
+    IDF = IDF_creating(directory)
+    word_list = list(IDF.keys())
+    files_names = text_treatment.list_of_files(directory, ".txt")
+    TF_list = []
+    for file in files_names:
+        destination = "./cleaned/" + file
+        text = text_treatment.read_str_in_file(destination)
+        TF_list.append(TF_creating(text))
+    TF_IDF = []
+    for word in word_list:
+        TF_IDF.append([])
+        for i in range(len(files_names)):
+            if word in TF_list[i]:
+                TF_IDF[-1].append(TF_list[i][word] * IDF[word])
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    return TF_IDF, word_list, files_names
 
 
