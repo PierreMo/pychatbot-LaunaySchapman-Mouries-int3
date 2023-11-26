@@ -54,4 +54,3 @@ def TF_IDF_creating(directory : str) -> tuple:
 
     return TF_IDF, word_list, files_names
 
-

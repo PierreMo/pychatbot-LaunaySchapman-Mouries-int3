@@ -40,7 +40,7 @@ for e in TF_list:
 IDF_corpus = IDF_creating("./cleaned/")
 print(IDF_corpus)
 
-# Printing the return of the TF_IDF function
+# Printing the return of the TF_IDF function55555
 print(TF_IDF_creating("./cleaned/"))
 
 # Menu
@@ -59,23 +59,21 @@ user_input = input()
 
 match user_input :
     case "Least" :
-        print(wordTD_IDF))
+        x = max(TF_IDF_creating(text_cleaned))
     case "More" :
-        print(max(TD_IDF))
-    case "Chirac" :
+        print(min(TF_IDF_creating.TF_IDF()))
+    case "Chirac":
 
-    case "Nation" :
+    case "Nation":
 
-    case "Climate" :
+    case "Climate":
 
-    case "Unimportant" :
+    case "Unimportant":
 
-    case "All" :
+    case "All":
 
-    case other :
+    case other:
         print("Enter a word of the list please")
+                               
 
-
-
-
-
+  
