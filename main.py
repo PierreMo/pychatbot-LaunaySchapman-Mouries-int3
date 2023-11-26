@@ -1,47 +1,7 @@
-from text_treatment import *
 from functions import *
+from text_treatment import *
 
 ## PART I ##
-
-# Taking the name of the files
-directory = "./speeches"
-files_names = list_of_files(directory, "txt")
-
-# Finding the name of the different presidents from the names of the files and display them
-presidents_names = finding_names(files_names)
-#print_list(presidents_names)
-
-# Creating a new folder
-new_folder('cleaned')
-
-# Putting in lowercase and one line each file from the 'speeches' folder and storing them in the 'cleaned' repertory
-for speech_file in files_names:
-    destination = "./speeches/" + speech_file
-    text_lowercase = file_in_lowercase(destination)
-    destination = "./cleaned/" + speech_file
-    write_in_file(destination, text_lowercase)
-
-# Cleaning the text: removing punctuation, double spaces, rewriting the files in 'cleaned'
-for speech_file in files_names:
-    destination = "./cleaned/" + speech_file
-    text_cleaned = file_cleaning(destination)
-    write_in_file(destination, text_cleaned)
-
-# Creating a list with the TF (dictionnary of term frequency) of each file
-TF_list = []
-for speech_file in files_names:
-    destination = "./cleaned/" + speech_file
-    text = read_str_in_file(destination)
-    TF_list.append(TF_creating(text))
-
-for e in TF_list:
-    print(e)
-
-IDF_corpus = IDF_creating("./cleaned/")
-print(IDF_corpus)
-
-# Printing the return of the TF_IDF function55555
-print(TF_IDF_creating("./cleaned/"))
 
 # Menu
 
@@ -57,23 +17,58 @@ print("To show :" + "\n"
 
 user_input = input()
 
+TF_IDF_matrix, words, files = TF_IDF_creating("./cleaned/")
+
 match user_input :
-    case "Least" :
-        x = max(TF_IDF_creating(text_cleaned))
-    case "More" :
-        print(min(TF_IDF_creating.TF_IDF()))
-    case "Chirac":
+      case "Least" :
+            unimportant = []
+            for i in range(len(TF_IDF_matrix)):
+                  if TF_IDF_matrix[i] == [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]:
+                        unimportant.append(words[i])
+            print_list(unimportant)
 
-    case "Nation":
+      case "More" :
+            maxi = TF_IDF_matrix[0][0]
+            pos = set([0])
+            for i in range(len(TF_IDF_matrix)):
+                  for j in range(len(files)):
+                        cible = TF_IDF_matrix[i][j]
+                        if cible != None and cible > maxi:
+                              maxi = TF_IDF_matrix[i][j]
+                              pos = set([i])
+                        elif cible == maxi:
+                              pos.add(i)
+            toprint = [words[e] for e in list(pos)]
+            print_list(toprint)
+      case "Chirac":
+            # a refaire
+            unimportant = []
+            chirac = [i for i in range(len(files)) if 'Chirac' in files[i]]
+            for j in chirac:
+                  for i in range(len(TF_IDF_matrix)):
+                        if TF_IDF_matrix[i][j] == 0.0:
+                              unimportant.append(words[i])
+            print_list(unimportant)
+      case "Nation":
 
-    case "Climate":
-
-    case "Unimportant":
-
-    case "All":
-
-    case other:
-        print("Enter a word of the list please")
+            files_names = text_treatment.list_of_files("./cleaned/", ".txt")
+            TF_list = []
+            for file in files_names:
+                  destination = "./cleaned/" + file
+                  text = text_treatment.read_str_in_file(destination)
+                  TF_list.append(TF_creating(text))
+            print()
+      case "Climate":
+            print()
+      case "Unimportant":
+            print()
+      case "All":
+            print()
+      case other:
+            print("Enter a word of the list please")
                                
-
-  
+"""
+data, mots, noms = TF_IDF_creating("./cleaned/")
+for i in range(len(data)):
+      print(mots[i], data[i], end=', \n')
+"""

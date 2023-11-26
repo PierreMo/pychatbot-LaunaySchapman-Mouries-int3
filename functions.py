@@ -51,6 +51,8 @@ def TF_IDF_creating(directory : str) -> tuple:
         for i in range(len(files_names)):
             if word in TF_list[i]:
                 TF_IDF[-1].append(TF_list[i][word] * IDF[word])
+            else:
+                TF_IDF[-1].append(None)
 
     return TF_IDF, word_list, files_names
 
