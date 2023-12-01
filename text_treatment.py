@@ -33,10 +33,12 @@ def print_list(L : list):
     '''
     Function which display a list properly (from Lab 5)
     '''
-    for e in L[:-1]:
-        print(e, end=', ')
-    print(L[-1])
-
+    if L:
+        for e in L[:-1]:
+            print(e, end=', ')
+        print(L[-1])
+    else:
+        print('Your list is empty')
 def new_folder(name):
     '''
     Take a string
