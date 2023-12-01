@@ -106,7 +106,7 @@ def read_str_in_file(file:str) -> str:
     Return the content of the file as a string without the last character (\n often)
     This is made to deal with one line files
     '''
-    with open(file, 'r') as f:
+    with open(file, 'r', encoding='utf-8') as f:
         return f.readline()[:-1]
 
 def file_cleaning(file :str):

@@ -6,7 +6,7 @@ from text_treatment import *
 # Menu
 
 print("To show :" + "\n"
-      "- The list of least important words : Least" + "\n"
+      "- The list of leasts important words : Least" + "\n"
       "- The list of more important words : More" + "\n"
       "- The most repeated word(s) by President Chirac : Chirac" + "\n"
       "- The name(s) of the president(s) who spoke of the 'Nation' and the one who repeated it the most times : Nation" + "\n"
@@ -22,12 +22,29 @@ names = text_treatment.finding_names(files)
 
 match user_input :
       case "Least" :
-            unimportant = []
+            liste_somme = []
             #temporary will be replace by a min
             for i in range(len(TF_IDF_matrix)):
-                  if sum(TF_IDF_matrix[i]) < 3.2:
-                        unimportant.append(words[i])
-            print_list(unimportant)
+                  liste_somme.append(sum(TF_IDF_matrix[i]))
+            print(liste_somme)
+            least = min(liste_somme)
+            unimportants_index = []
+            for k in range(len(liste_somme)):
+                  if liste_somme[k] == least:
+                        unimportants_index.append(k)
+            unimportants = []
+            for e in unimportants_index:
+                  unimportants.append(words[e])
+
+
+
+            print(unimportants)
+            print(len(unimportants))
+            print(words[liste_somme.index(least)])
+
+
+
+
 
       case "More" :
             maxi = TF_IDF_matrix[0][0]

@@ -32,7 +32,7 @@ def IDF_creating(directory : str) -> dict:
                 IDF_dict[word] = 1
     nbr_doc = len(files)
     for word in IDF_dict:
-        IDF_dict[word] = math.log(nbr_doc/IDF_dict[word])
+        IDF_dict[word] = math.log(nbr_doc/IDF_dict[word] +1)
     return IDF_dict
 
 
@@ -50,7 +50,7 @@ def TF_IDF_creating(directory : str) -> tuple:
         TF_IDF.append([])
         for i in range(len(files_names)):
             if word in TF_list[i]:
-                TF_IDF[-1].append(TF_list[i][word] * IDF[word]+1)
+                TF_IDF[-1].append(TF_list[i][word] * IDF[word])
             else:
                 TF_IDF[-1].append(0.0)
 
