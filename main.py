@@ -1,5 +1,6 @@
-from functions import *
+from computations import *
 from text_treatment import *
+import features
 
 ## PART I ##
 
@@ -22,29 +23,7 @@ names = text_treatment.finding_names(files)
 
 match user_input :
       case "Least" :
-            liste_somme = []
-            #temporary will be replace by a min
-            for i in range(len(TF_IDF_matrix)):
-                  liste_somme.append(sum(TF_IDF_matrix[i]))
-            print(liste_somme)
-            least = min(liste_somme)
-            unimportants_index = []
-            for k in range(len(liste_somme)):
-                  if liste_somme[k] == least:
-                        unimportants_index.append(k)
-            unimportants = []
-            for e in unimportants_index:
-                  unimportants.append(words[e])
-
-
-
-            print(unimportants)
-            print(len(unimportants))
-            print(words[liste_somme.index(least)])
-
-
-
-
+            print(features.least())
 
       case "More" :
             maxi = TF_IDF_matrix[0][0]

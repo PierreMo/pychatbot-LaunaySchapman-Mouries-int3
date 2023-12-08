@@ -1,5 +1,5 @@
-import math
-import text_treatment
+from computations import *
+from text_treatment import *
 def TF_creating(text : str) -> dict:
     '''
     function that takes a string as a parameter
@@ -18,12 +18,12 @@ def IDF_creating(directory : str) -> dict:
     Take a name of directory
     returns a dictionary associating the IDF score with each word
     '''
-    # find every txt file and store their neames in a list
-    files = text_treatment.list_of_files(directory, ".txt")
+    # find every txt file and store their names in a list
+    files = list_of_files(directory, ".txt")
     IDF_dict = {}
     for file_name in files:
         words_in_file = set()
-        for word in text_treatment.read_str_in_file(directory+file_name).split(' '):
+        for word in read_str_in_file(directory+file_name).split(' '):
             words_in_file.add(word)
         for word in words_in_file:
             if word in IDF_dict:
@@ -32,18 +32,18 @@ def IDF_creating(directory : str) -> dict:
                 IDF_dict[word] = 1
     nbr_doc = len(files)
     for word in IDF_dict:
-        IDF_dict[word] = math.log(nbr_doc/IDF_dict[word] +1)
+        IDF_dict[word] = log(nbr_doc/IDF_dict[word] +1)
     return IDF_dict
 
 
 def TF_IDF_creating(directory : str) -> tuple:
     IDF = IDF_creating(directory)
     word_list = list(IDF.keys())
-    files_names = text_treatment.list_of_files(directory, ".txt")
+    files_names = list_of_files(directory, ".txt")
     TF_list = []
     for file in files_names:
         destination = "./cleaned/" + file
-        text = text_treatment.read_str_in_file(destination)
+        text = read_str_in_file(destination)
         TF_list.append(TF_creating(text))
     TF_IDF = []
     for word in word_list:
@@ -55,4 +55,9 @@ def TF_IDF_creating(directory : str) -> tuple:
                 TF_IDF[-1].append(0.0)
 
     return TF_IDF, word_list, files_names
+
+def tokenization_question(question : str) -> list:
+    clean_q = file_cleaning(question)
+
+
 
