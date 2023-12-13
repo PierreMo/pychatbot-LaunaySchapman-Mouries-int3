@@ -1,4 +1,4 @@
-''' this module allowed to transform a text into words space separated'''
+""" This module allowed to transform a text into words space separated """
 
 # module for dealing with files:
 import os
@@ -17,7 +17,7 @@ def list_of_files(directory : str, extension : str) -> list:
 def finding_names(files_names : list) -> list:
     '''
     Take a list of files names such as Nomination_[president's name][number].txt
-    Return a list containing the associated names
+    Return a list containing once the associated names
     '''
     names = set()
     for file in files_names:
@@ -28,6 +28,20 @@ def finding_names(files_names : list) -> list:
             name = name[:-1]
         names.add(name)
     return list(names)
+def associating_names(files_names : list) -> list:
+    '''
+    Take a list of files names such as Nomination_[president's name][number].txt
+    Return a list containing the associated names in the same order than the entered
+    '''
+    names = []
+    for file in files_names:
+        # taking the string with Nomination_ and .txt
+        name= file[11:-4]
+        # removing the number at end if there is one
+        if 48 <= ord(name[-1]) <= 57:
+            name = name[:-1]
+        names.append(name)
+    return list(names)
 
 def print_list(L : list):
     '''
@@ -36,7 +50,7 @@ def print_list(L : list):
     if L:
         for e in L[:-1]:
             print(e, end=', ')
-        print(L[-1])
+        print(L[-1], end='.\n')
     else:
         print('Your list is empty')
 def new_folder(name):
