@@ -81,7 +81,7 @@ def file_in_lowercase(file :str) -> str:
             # if upercase -> lowercase
             if 65 <= ord(char) <= 90:
                 content_str += chr(ord(char) +32)
-            # dealing with special character of french langage
+            # dealing with special character of French language
             elif char in 'ÈÉœÀÊÇÔÙ':
                 match char:
                     case 'È':
@@ -113,15 +113,17 @@ def write_in_file(file:str, content : str):
     Write the string in the file.
     '''
     with open(file, 'w') as f:
-        f.write(content)
+        f.write(content+'\n')
 def read_str_in_file(file:str) -> str:
     '''
     Take a destination path of txt file as parameter.
     Return the content of the file as a string without the last character (\n often)
     This is made to deal with one line files
     '''
-    with open(file, 'r', encoding='utf-8') as f:
-        return f.readline()[:-1]
+    with open(file, 'r') as f:
+        #, encoding='utf-8'
+        result = f.readline()[:-1]
+    return result
 
 def file_cleaning(file :str):
     '''
@@ -147,7 +149,7 @@ def file_cleaning(file :str):
     for word in content:
         content_string += word + ' '
     # writing the string in the appropriate file
-    write_in_file(file, content_string)
+    return content_string
 
 
 def corpus_cleaning(directory):

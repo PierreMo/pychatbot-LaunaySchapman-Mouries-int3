@@ -38,10 +38,12 @@ def IDF_creating(directory : str) -> dict:
             words_in_file.add(word)
         # incrementing or initializing the count of words in the dictionary
         for word in words_in_file:
-            if word in IDF_dict:
-                IDF_dict[word] += 1
-            else:
-                IDF_dict[word] = 1
+            if word:
+                if word in IDF_dict:
+                    IDF_dict[word] += 1
+                else:
+                    IDF_dict[word] = 1
+
     # computing the IDF: number of document/ number of documents in which the word appear
     nbr_doc = len(files)
     for word in IDF_dict:
