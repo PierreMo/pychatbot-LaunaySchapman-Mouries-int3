@@ -6,6 +6,13 @@ import text_treatment as tx
 TF_IDF_matrix, words, files = cmp.TF_IDF_creating("./cleaned/")
 names = tx.associating_names(files)
 
+# taking the TF scores of the different texts (dictionnary)
+TF_list = []
+for file in files:
+      destination = "./cleaned/" + file
+      text = tx.read_str_in_file(destination)
+      TF_list.append(cmp.TF_creating(text))
+
 def least():
     liste_somme = []
     # temporary will be replaced by a min
@@ -62,13 +69,6 @@ def finding_highest_tf_txtname(element : str) -> list:
 
 
 def nation() -> tuple:
-    # taking the TF scores of the different texts (dictionnary)
-    TF_list = []
-    for file in files:
-          destination = "./cleaned/" + file
-          text = tx.read_str_in_file(destination)
-          TF_list.append(cmp.TF_creating(text))
-
     # index of presidents who spoke about nation (index coherent to names and files)
     # creating a dictionnary in which key are president who spoke about nation and value is the number of time he spoke about it
     # we need to do it because some president have many speeches
@@ -88,3 +88,38 @@ def nation() -> tuple:
                 maxi_name = president
 
     return president_nation, maxi_name
+
+
+def climat() -> list:
+    print(TF_list)
+    # index of presidents who spoke about nation (index coherent to names and files)
+    # creating a dictionnary in which key are president who spoke about nation and value is the number of time he spoke about it
+    # we need to do it because some president have many speeches
+    set_climat = set()
+    for i in range(len(files)):
+          if "écologie" in TF_list[i] or "climat" in TF_list[i]:
+                set_climat.add(names[i])
+
+    president_climat = list(set_climat)
+
+    return president_climat
+
+
+def all_said() -> list:
+    unimportant = least()
+    all_mentioned = []
+    for word in words:
+        print(word)
+        isin = True
+        i = 0
+        while isin and i<len(TF_list):
+            if word not in TF_list[i]:
+                print(word)
+                print()
+                isin = False
+            i+=1
+
+        if isin and word not in unimportant:
+            all_mentioned.append(word)
+
+    return all_mentioned

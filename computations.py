@@ -2,13 +2,19 @@
 
 import text_treatment as tx
 import math
+
+tx.corpus_cleaning('speeches')
+
 def TF_creating(text : str) -> dict:
     '''
     function that takes a string as a parameter
     returns a dictionary associating with each word the number of times it appears in the string
     '''
+    # initialisation of the dictionnary
     TFdictionnary = {}
+    # running through the words of the text
     for word in text.split(' '):
+        # counting the occurences of the differents words in the dictionnary
         if word in TFdictionnary:
             TFdictionnary[word] += 1
         else:
@@ -18,7 +24,7 @@ def TF_creating(text : str) -> dict:
 def IDF_creating(directory : str) -> dict:
     '''
     Take a name of directory
-    returns a dictionary associating the IDF score with each word
+    returns a dictionary associating the IDF score with each word present in the txt files of the directory
     '''
     # find every txt file and store their names in a list
     files = tx.list_of_files(directory, ".txt")
@@ -57,7 +63,3 @@ def TF_IDF_creating(directory : str) -> tuple:
                 TF_IDF[-1].append(0.0)
 
     return TF_IDF, word_list, files_names
-
-
-
-
