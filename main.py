@@ -1,13 +1,11 @@
 import text_treatment as tx
 import features
+import answering
 
 ## PART I ##
 
 # Menu
-
-
-TF_IDF_matrix, words, files = TF_IDF_creating("./cleaned/")
-names = tx.finding_names(files)
+print(answering.intersection_question_corpus("Comment est ce que l'on peut écrire ça?"))
 while True:
       print("To show :" + "\n"
             "- The list of leasts important words: Least" + "\n"

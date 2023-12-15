@@ -34,10 +34,11 @@ def IDF_creating(directory : str) -> dict:
         for word in tx.read_str_in_file(directory+file_name).split(' '):
             words_in_file.add(word)
         for word in words_in_file:
-            if word in IDF_dict:
-                IDF_dict[word] += 1
-            else:
-                IDF_dict[word] = 1
+            if word:
+                if word in IDF_dict:
+                    IDF_dict[word] += 1
+                else:
+                    IDF_dict[word] = 1
     nbr_doc = len(files)
     for word in IDF_dict:
         IDF_dict[word] = math.log10(nbr_doc/IDF_dict[word])
