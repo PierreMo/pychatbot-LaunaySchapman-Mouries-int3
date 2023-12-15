@@ -174,5 +174,5 @@ def corpus_cleaning(directory):
     # Cleaning the text: removing punctuation, double spaces, rewriting the files in 'cleaned'
     for speech_file in files_names:
         destination = "./cleaned/" + speech_file
-        write_in_file(destination, file_cleaning(destination))
-
+        text_cleaned = file_cleaning(destination)
+        write_in_file(destination, text_cleaned)
