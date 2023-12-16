@@ -5,11 +5,14 @@ from modules import answering
 ## PART I ##
 
 # Menu
-question = " et je songe bien sûr à françois hollande, faisant oeuvre de précurseur avec l'accord de paris sur le climat et protégeant les français dans un monde frappé par le terrorisme."
+question = " Peux-tu me dire comment une nation peut-elle prendre soin du climat?"
+
 print(answering.tokenization(question))
 print(answering.intersection_question_corpus(question))
-print(answering.TF_IDF_vector_question(question))
-print(answering.most_revelant(question))
+sdgdsgsdgs = answering.TF_IDF_vector_question(question)
+print(sdgdsgsdgs)
+print(answering.most_revelant(sdgdsgsdgs))
+print(answering.I_CAN_ANSWER_WHAT_YOU_WANT(question))
 
 while True:
       print("To show :" + "\n"
@@ -18,7 +21,8 @@ while True:
             "- The most repeated word(s) by President Chirac : Chirac" + "\n"
             "- The name(s) of the president(s) who spoke of the 'Nation' and the one who repeated it the most times: Nation" + "\n"
             "- The first president to talk about climate (“climat”) and/or ecology (“écologie”): Climate " + "\n"
-            "- Word(s) which all the president mention (excepti the so-called 'unimportant' words): All"
+            "- Word(s) which all the president mention (excepti the so-called 'unimportant' words): All" + "\n"
+            "- To interact with our new premium excellent better than openAI and Elon musk chatbot: Chat"
       )
 
       user_input = input()
@@ -47,5 +51,8 @@ while True:
                   words_mention = features.all_said()
                   print('The presidents all say: ', end=' ')
                   tx.print_list(words_mention)
+            case "Chat":
+                question = input('Enter your question: ')
+                print(answering.I_CAN_ANSWER_WHAT_YOU_WANT(question))
             case other:
                   print("Enter a word of the list please")

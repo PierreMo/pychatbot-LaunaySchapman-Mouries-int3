@@ -26,8 +26,7 @@ def tokenization(question : str) -> list:
     return question_cleaned.split()
 
 # 2
-def intersection_question_corpus(question : str ) -> set:
-    question_word_list = tokenization(question)
+def intersection_question_corpus(question_word_list : list ) -> set:
     set_question = set(question_word_list)
     set_words = set(WORDS)
     return set_question & set_words
@@ -86,12 +85,19 @@ def similarity_calculating(A:list, B:list) -> float:
     return product/(normA*normB)
 
 # 5
-def most_revelant(question : str) -> str:
+
+def index_of_maxi(L : list) -> int:
+    max_ind = 0
+    for i in range(1, len(L)):
+        if L[i] > L[max_ind]:
+            max_ind = i
+    return max_ind
+
+def most_revelant(question_vector : list) -> str:
     """
-    Take a question as parameter
+    Take the TF-IDF list of a question as parameter (size = number of words in the corpus)
     Return the name of the output file which is the most revelant
     """
-    question_vector = TF_IDF_vector_question(question)
     similarity_table = []
     for j in range(len(FILES)):
         text_vector=[]
@@ -99,22 +105,29 @@ def most_revelant(question : str) -> str:
             text_vector.append(TF_IDF_MATRIX[i][j])
         similarity_table.append(similarity_calculating(text_vector, question_vector))
 
-    max_ind = 0
-    for i in range(1, len(similarity_table)):
-        if similarity_table[i] > similarity_table[max_ind]:
-            max_ind = i
+    max_ind = index_of_maxi(similarity_table)
 
     return FILES[max_ind]
 
 
 # 6
 
+def I_CAN_ANSWER_WHAT_YOU_WANT(question : str):
+    question_tf_idf = TF_IDF_vector_question(question)
+    text_target = most_revelant(question_tf_idf)
+    highest_tf_idf = index_of_maxi(question_tf_idf)
+    word_target = WORDS[highest_tf_idf]
 
+    with open('./speeches/'+text_target, 'r') as f:
+        full_text = f.readlines()
 
+    i = 0
+    while i < len(full_text) and word_target not in full_text[i]:
+        i+=1
 
-
-
-
+    if i == len(full_text):
+        return 'Error not found'
+    return full_text[i]
 
 
 
