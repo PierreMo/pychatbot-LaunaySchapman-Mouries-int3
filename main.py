@@ -4,6 +4,14 @@ from modules import answering
 
 ## PART I ##
 
+# Non-exhaustive list of suggestions
+question_starters = {
+ "Comment": "Après analyse, ",
+ "Pourquoi": "Car, " ,
+ "Peux-tu": "Oui, bien sûr!",
+ "Quel": "Selon mes recherches,",
+
+}
 # Menu
 question = " Peux-tu me dire comment une nation peut-elle prendre soin du climat?"
 
