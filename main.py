@@ -9,6 +9,8 @@ question = "Comment est-ce que l'on peut écrire ça?"
 print(answering.tokenization(question))
 print(answering.intersection_question_corpus(question))
 print(answering.TF_IDF_vector_question(question))
+print(answering.similarity_calculating(answering.TF_IDF_vector_question(question),answering.TF_IDF_vector_question("Pourquoi est-ce que tu peut écrire ça?")))
+print(answering.most_revelant(" Peux-tu me dire comment une nation peut-elle prendre soin du climat?"))
 while True:
       print("To show :" + "\n"
             "- The list of leasts important words: Least" + "\n"

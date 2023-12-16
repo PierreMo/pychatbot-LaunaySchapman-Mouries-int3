@@ -4,13 +4,13 @@ import computations as cmp
 import text_treatment as tx
 
 # importation of IDF matrix from computations.py and associated row index, column index
-TF_IDF_matrix, words, files = cmp.TF_IDF_matrix, cmp.words, cmp.files
+TF_IDF_MATRIX, WORDS, FILES = cmp.TF_IDF_MATRIX, cmp.WORDS, cmp.FILES
 # importation of the associated names (list with duplication)
-names = cmp.names
+names = cmp.NAMES
 
 # taking the TF scores of the different texts (dictionnary)
 TF_list = []
-for file in files:
+for file in FILES:
       destination = "./cleaned/" + file
       text = tx.read_str_in_file(destination)
       TF_list.append(cmp.TF_creating(text))
@@ -18,8 +18,8 @@ for file in files:
 def least():
     liste_somme = []
     # temporary will be replaced by a min
-    for i in range(len(TF_IDF_matrix)):
-        liste_somme.append(sum(TF_IDF_matrix[i]))
+    for i in range(len(TF_IDF_MATRIX)):
+        liste_somme.append(sum(TF_IDF_MATRIX[i]))
     least = min(liste_somme)
     unimportants_index = []
     for k in range(len(liste_somme)):
@@ -27,28 +27,28 @@ def least():
             unimportants_index.append(k)
     unimportants = []
     for e in unimportants_index:
-        unimportants.append(words[e])
+        unimportants.append(WORDS[e])
     return unimportants
 
 def finding_highest_tfidf() -> list:
-    maxi = TF_IDF_matrix[0][0]
+    maxi = TF_IDF_MATRIX[0][0]
     pos = {0}
-    for i in range(len(TF_IDF_matrix)):
-          for j in range(len(files)):
-                cible = TF_IDF_matrix[i][j]
+    for i in range(len(TF_IDF_MATRIX)):
+          for j in range(len(FILES)):
+                cible = TF_IDF_MATRIX[i][j]
                 if cible > maxi:
-                      maxi = TF_IDF_matrix[i][j]
+                      maxi = TF_IDF_MATRIX[i][j]
                       pos = {i}
                 elif cible == maxi:
                       pos.add(i)
-    toprint = [words[e] for e in list(pos)]
+    toprint = [WORDS[e] for e in list(pos)]
     return toprint
 
 def finding_highest_tf_txtname(element : str) -> list:
     # Obtaining the speeches file in which element appears in the file name
-    chirac_speeches_files = [i for i in range(len(files)) if str(element) in files[i]]
+    chirac_speeches_files = [i for i in range(len(FILES)) if str(element) in FILES[i]]
     # Getting the TF dict of the speeches
-    chirac_TFs = [cmp.TF_creating(tx.read_str_in_file("./cleaned/" + files[file_ind])) for file_ind in chirac_speeches_files]
+    chirac_TFs = [cmp.TF_creating(tx.read_str_in_file("./cleaned/" + FILES[file_ind])) for file_ind in chirac_speeches_files]
     # summing the dictionnary
     chirac_TF_sum = {}
     for dictio in chirac_TFs:
@@ -75,7 +75,7 @@ def nation() -> tuple:
     # creating a dictionnary in which key are president who spoke about nation and value is the number of time he spoke about it
     # we need to do it because some president have many speeches
     dictio_nation = {}
-    for i in range(len(files)):
+    for i in range(len(FILES)):
           if "nation" in TF_list[i]:
                 if names[i] in dictio_nation:
                     dictio_nation[names[i]] += TF_list[i]['nation']
@@ -98,7 +98,7 @@ def climat() -> list:
     # creating a dictionnary in which key are president who spoke about nation and value is the number of time he spoke about it
     # we need to do it because some president have many speeches
     set_climat = set()
-    for i in range(len(files)):
+    for i in range(len(FILES)):
           if "écologie" in TF_list[i] or "climat" in TF_list[i]:
                 set_climat.add(names[i])
 
@@ -110,7 +110,7 @@ def climat() -> list:
 def all_said() -> list:
     unimportant = least()
     all_mentioned = []
-    for word in words:
+    for word in WORDS:
         print(word)
         isin = True
         i = 0

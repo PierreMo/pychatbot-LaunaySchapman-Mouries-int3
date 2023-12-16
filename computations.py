@@ -83,5 +83,5 @@ def TF_IDF_creating(directory : str) -> tuple:
 tx.corpus_cleaning('speeches')
 
 IDF = IDF_creating('./cleaned/')
-TF_IDF_matrix, words, files = TF_IDF_creating("./cleaned/")
-names = tx.associating_names(files)
+TF_IDF_MATRIX, WORDS, FILES = TF_IDF_creating("./cleaned/")
+NAMES = tx.associating_names(FILES)
