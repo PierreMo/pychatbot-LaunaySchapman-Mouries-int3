@@ -1,7 +1,7 @@
 # In this module there are the features to develop in the part I of the project
 
-import computations as cmp
-import text_treatment as tx
+from modules import computations as cmp
+from modules import text_treatment as tx
 
 # importation of IDF matrix from computations.py and associated row index, column index
 TF_IDF_MATRIX, WORDS, FILES = cmp.TF_IDF_MATRIX, cmp.WORDS, cmp.FILES

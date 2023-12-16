@@ -1,5 +1,5 @@
-import text_treatment as tx
-import computations as cmp
+from modules import text_treatment as tx
+from modules import computations as cmp
 import math
 
 # importation of IDF matrix from computations.py and associated row index, column index
@@ -12,13 +12,17 @@ IDF_corpus = cmp.IDF
 # PART II
 
 # 1
+have_tok_run =False
 def tokenization(question : str) -> list:
-    tx.write_in_file('question.txt', question)
-    lowercase = tx.file_in_lowercase('question.txt')
-    tx.write_in_file('question.txt', lowercase)
-    question_cleaned = tx.file_cleaning('question.txt')
-    with open('asked_questions.txt', 'a') as f:
-        f.write('QUESTION: '+ question_cleaned)
+    tx.write_in_file('../question.txt', question)
+    lowercase = tx.file_in_lowercase('../question.txt')
+    tx.write_in_file('../question.txt', lowercase)
+    question_cleaned = tx.file_cleaning('../question.txt')
+    global have_tok_run
+    if not have_tok_run:
+        with open('../historic.txt', 'a') as f:
+            f.write('QUESTION: '+ question_cleaned + '\n')
+        have_tok_run =True
     return question_cleaned.split()
 
 # 2
@@ -91,7 +95,7 @@ def most_revelant(question : str) -> str:
     similarity_table = []
     for j in range(len(FILES)):
         text_vector=[]
-        for i in range(len(TF_IDF_MATRIX)):
+        for i in range(len(WORDS)):
             text_vector.append(TF_IDF_MATRIX[i][j])
         similarity_table.append(similarity_calculating(text_vector, question_vector))
 
@@ -100,7 +104,7 @@ def most_revelant(question : str) -> str:
         if similarity_table[i] > similarity_table[max_ind]:
             max_ind = i
 
-    return FILES[i]
+    return FILES[max_ind]
 
 
 # 6

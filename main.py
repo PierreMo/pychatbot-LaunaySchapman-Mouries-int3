@@ -1,16 +1,16 @@
-import text_treatment as tx
-import features
-import answering
+from modules import text_treatment as tx
+from modules import features
+from modules import answering
 
 ## PART I ##
 
 # Menu
-question = "Comment est-ce que l'on peut écrire ça?"
+question = " et je songe bien sûr à françois hollande, faisant oeuvre de précurseur avec l'accord de paris sur le climat et protégeant les français dans un monde frappé par le terrorisme."
 print(answering.tokenization(question))
 print(answering.intersection_question_corpus(question))
 print(answering.TF_IDF_vector_question(question))
-print(answering.similarity_calculating(answering.TF_IDF_vector_question(question),answering.TF_IDF_vector_question("Pourquoi est-ce que tu peut écrire ça?")))
-print(answering.most_revelant(" Peux-tu me dire comment une nation peut-elle prendre soin du climat?"))
+print(answering.most_revelant(question))
+
 while True:
       print("To show :" + "\n"
             "- The list of leasts important words: Least" + "\n"

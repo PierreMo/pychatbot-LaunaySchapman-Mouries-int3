@@ -1,6 +1,6 @@
 """ This module is used to compute the TF-IDF of words in a text corpus"""
 
-import text_treatment as tx
+from modules import text_treatment as tx
 import math
 
 
@@ -79,6 +79,7 @@ def TF_IDF_creating(directory : str) -> tuple:
             else:
                 TF_IDF[-1].append(0.0)
     return TF_IDF, word_list, files_names
+
 
 tx.corpus_cleaning('speeches')
 
