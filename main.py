@@ -5,7 +5,10 @@ import answering
 ## PART I ##
 
 # Menu
-print(answering.intersection_question_corpus("Comment est ce que l'on peut écrire ça?"))
+question = "Comment est-ce que l'on peut écrire ça?"
+print(answering.tokenization(question))
+print(answering.intersection_question_corpus(question))
+print(answering.TF_IDF_vector_question(question))
 while True:
       print("To show :" + "\n"
             "- The list of leasts important words: Least" + "\n"

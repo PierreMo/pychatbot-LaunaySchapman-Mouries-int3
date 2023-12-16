@@ -3,7 +3,6 @@
 import text_treatment as tx
 import math
 
-tx.corpus_cleaning('speeches')
 
 def TF_creating(text : str) -> dict:
     '''
@@ -79,5 +78,10 @@ def TF_IDF_creating(directory : str) -> tuple:
                 TF_IDF[-1].append(TF_list[i][word] * IDF[word])
             else:
                 TF_IDF[-1].append(0.0)
-
     return TF_IDF, word_list, files_names
+
+tx.corpus_cleaning('speeches')
+
+IDF = IDF_creating('./cleaned/')
+TF_IDF_matrix, words, files = TF_IDF_creating("./cleaned/")
+names = tx.associating_names(files)

@@ -3,8 +3,10 @@
 import computations as cmp
 import text_treatment as tx
 
-TF_IDF_matrix, words, files = cmp.TF_IDF_creating("./cleaned/")
-names = tx.associating_names(files)
+# importation of IDF matrix from computations.py and associated row index, column index
+TF_IDF_matrix, words, files = cmp.TF_IDF_matrix, cmp.words, cmp.files
+# importation of the associated names (list with duplication)
+names = cmp.names
 
 # taking the TF scores of the different texts (dictionnary)
 TF_list = []
