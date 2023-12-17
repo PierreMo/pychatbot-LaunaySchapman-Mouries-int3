@@ -111,13 +111,7 @@ def most_revelant(question_vector : list) -> str:
 
 
 # 6
-question_starters = {
- "Comment": "Après analyse, ",
- "Pourquoi": "Car, " ,
- "Peux-tu": "Oui, bien sûr!",
- "Quel": "Selon mes recherches,",
 
-}
 def I_CAN_ANSWER_WHAT_YOU_WANT(question : str):
     """
     :param question: question to answer
@@ -127,10 +121,6 @@ def I_CAN_ANSWER_WHAT_YOU_WANT(question : str):
     text_target = most_revelant(question_tf_idf)
     highest_tf_idf = index_of_maxi(question_tf_idf)
     word_target = WORDS[highest_tf_idf]
-    if question == "Comment%":
-        print("Après analyse, ")
-    if question == "Peux-tu%":
-        print("Oui, bien sûr!")
 
     with open('./speeches/'+text_target, 'r') as f:
         full_text = f.readlines()
@@ -144,11 +134,33 @@ def I_CAN_ANSWER_WHAT_YOU_WANT(question : str):
     return full_text[i]
 
 
+def refine_answer(question:str) -> str:
+    """
+    :param question: a question to answer
+    :return: an answer from the text with a litle polite formula at the beginning
+    """
+    answer = I_CAN_ANSWER_WHAT_YOU_WANT(question)
 
+    if "Comment" in question or "Peux-tu" in question:
+        if ord(answer[0]) <123 and ord(answer[0]) >96:
+            answer = chr(ord(answer[0])-32) + answer[1:]
 
+        if "Comment" in question:
+            return "Après analyse, " + answer
+        elif "Peux-tu" in question:
+            return "Oui, bien sûr!" + answer
+    else:
+        if ord(answer[0]) <64 and ord(answer[0]) >91:
+            answer = chr(ord(answer[0])+32) + answer[1:]
 
-
-
-
-
+        if "Pourquoi" in question:
+            return "Car, "+answer
+        elif "Quel" in question or "Quels" in question or "Quelle" in question or "Quelles" in question:
+            return "Selon mes recherches,"+answer
+        elif "Qui" in question:
+            return "C'est "+answer
+        elif "Quand" in question:
+            return "Suite à l'analyse de document historique,  " + answer
+        elif "Où" in question:
+            return "Lors de " + answer
 
