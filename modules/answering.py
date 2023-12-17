@@ -111,7 +111,13 @@ def most_revelant(question_vector : list) -> str:
 
 
 # 6
+question_starters = {
+ "Comment": "Après analyse, ",
+ "Pourquoi": "Car, " ,
+ "Peux-tu": "Oui, bien sûr!",
+ "Quel": "Selon mes recherches,",
 
+}
 def I_CAN_ANSWER_WHAT_YOU_WANT(question : str):
     """
     :param question: question to answer
@@ -121,6 +127,10 @@ def I_CAN_ANSWER_WHAT_YOU_WANT(question : str):
     text_target = most_revelant(question_tf_idf)
     highest_tf_idf = index_of_maxi(question_tf_idf)
     word_target = WORDS[highest_tf_idf]
+    if question == "Comment%":
+        print("Après analyse, ")
+    if question == "Peux-tu%":
+        print("Oui, bien sûr!")
 
     with open('./speeches/'+text_target, 'r') as f:
         full_text = f.readlines()
