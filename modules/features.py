@@ -1,29 +1,36 @@
-# In this module there are the features to develop in the part I of the project
+# pychatbot-LaunaySchapman-Mouries-int3
+# Launay-Schapman Alexis and Pierre Mouriès
+# role of the file: In this module there are the features to develop in the part I of the project
+# those features are basics text analysis
 
+#### IMPORTATIONS ####
+### Modules importations
 from modules import computations as cmp
 from modules import text_treatment as tx
 
+### Global Variables importation
 # importation of IDF matrix from computations.py and associated row index, column index
 TF_IDF_MATRIX, WORDS, FILES = cmp.TF_IDF_MATRIX, cmp.WORDS, cmp.FILES
 # importation of the associated names (list with duplication)
 names = cmp.NAMES
 
-# taking the TF scores of the different texts (dictionnary)
+# taking the TF scores of the different texts (dictionnary) using computations module
 TF_list = []
 for file in FILES:
       destination = "./cleaned/" + file
       text = tx.read_str_in_file(destination)
       TF_list.append(cmp.TF_creating(text))
 
+
 def least():
-    liste_somme = []
+    sum_list = []
     # temporary will be replaced by a min
     for i in range(len(TF_IDF_MATRIX)):
-        liste_somme.append(sum(TF_IDF_MATRIX[i]))
-    least = min(liste_somme)
+        sum_list.append(sum(TF_IDF_MATRIX[i]))
+    mini = min(sum_list)
     unimportants_index = []
-    for k in range(len(liste_somme)):
-        if liste_somme[k] == least:
+    for k in range(len(sum_list)):
+        if sum_list[k] == mini:
             unimportants_index.append(k)
     unimportants = []
     for e in unimportants_index:

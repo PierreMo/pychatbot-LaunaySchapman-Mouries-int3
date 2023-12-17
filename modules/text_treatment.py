@@ -1,8 +1,13 @@
-""" This module allowed to transform a text into words space separated """
+# pychatbot-LaunaySchapman-Mouries-int3
+# Launay-Schapman Alexis and Pierre Mouriès
+# role of the file: This module is made to deal with files and texts (beginning of the part I of the project)
+# the main function is corpus_cleaning which use the others functions to clean a directory of text in a cleaned directory
 
+#### IMPORTATIONS ####
 # module for dealing with files:
 import os
 
+#### FUNCTIONS ####
 def list_of_files(directory : str, extension : str) -> list:
     '''
     Function which takes a directory and a type of file (extension) as parameters.
@@ -166,8 +171,9 @@ def corpus_cleaning(directory):
 
     # Putting in lowercase and one line each file from the 'speeches' folder and storing them in the 'cleaned' repertory
     for speech_file in files_names:
-        destination = "./speeches/" + speech_file
-        text_lowercase = file_in_lowercase(destination)
+        target = "./speeches/" + speech_file
+        text_lowercase = file_in_lowercase(target)
+
         destination = "./cleaned/" + speech_file
         write_in_file(destination, text_lowercase)
 

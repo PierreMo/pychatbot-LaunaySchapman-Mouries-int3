@@ -1,9 +1,14 @@
-""" This module is used to compute the TF-IDF of words in a text corpus"""
+# pychatbot-LaunaySchapman-Mouries-int3
+# Launay-Schapman Alexis and Pierre Mouriès
+# role of the file: This module is used to compute the TF-IDF of words in a text corpus
+# at the end of this file globals variables of the project are created using its functions
 
+
+#### IMPORTATIONS ####
 from modules import text_treatment as tx
 import math
 
-
+#### FUNCTIONS ####
 def TF_creating(text : str) -> dict:
     '''
     function that takes a string as a parameter
@@ -81,8 +86,11 @@ def TF_IDF_creating(directory : str) -> tuple:
     return TF_IDF, word_list, files_names
 
 
+#### CREATING GLOBALS VARIABLES ####
+# cleaning the files thanks to our text_treatment module (file cleaned are in the cleaned directory)
 tx.corpus_cleaning('speeches')
 
+# computing useful globals variables
 IDF = IDF_creating('./cleaned/')
 TF_IDF_MATRIX, WORDS, FILES = TF_IDF_creating("./cleaned/")
 NAMES = tx.associating_names(FILES)

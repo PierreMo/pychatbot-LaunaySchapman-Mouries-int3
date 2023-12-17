@@ -2,7 +2,7 @@ from modules import text_treatment as tx
 from modules import features
 from modules import answering
 
-## PART I ##
+## PART I ##w
 
 # Menu
 question = " Peux-tu me dire comment une nation peut-elle prendre soin du climat?"
