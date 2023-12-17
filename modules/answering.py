@@ -176,14 +176,13 @@ def refine_answer(question: str) -> str:
 
     with open('./modules/historic.txt', 'a') as f:
         f.write('QUESTION: ' + question + '\n')
-    with open('./modules/historic.txt', 'a') as f:
         f.write('ANSWER: ' + result + '\n\n')
 
     return result
 
 
 # bonus
-def give_historic() -> list:
+def print_historic() -> list:
     """
     Gives historic (every questions and answers are stored in a file)
     """
@@ -191,10 +190,14 @@ def give_historic() -> list:
         with open('./modules/historic.txt', 'r') as f:
             histo = f.readlines()
     except FileNotFoundError:
-        return ["You haven't asked any questions"]
-    return histo
+        print("You haven't asked any questions.")
+
+    if len(histo)==1:
+        print("You haven't asked any questions")
+    else:
+        tx.print_list(histo)
 
 def clean_historic():
     with open('./modules/historic.txt', 'w') as f:
-        f.write('Historic:')
+        f.write('Historic:'+'\n')
     return 'Done'

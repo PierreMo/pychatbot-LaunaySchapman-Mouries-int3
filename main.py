@@ -93,7 +93,7 @@ while running:
                         print()
                         match question:
                               case "h":
-                                    tx.print_list(answering.give_historic())
+                                    historic = answering.print_historic()
                               case 'm':
                                     chatboting = False
                               case 'c':
