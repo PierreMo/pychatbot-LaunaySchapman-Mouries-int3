@@ -1,5 +1,6 @@
 # pychatbot-LaunaySchapman-Mouries-int3
 # Launay-Schapman Alexis and Pierre Mouriès
+
 # role of the file: In this module there are the features to develop in the part I of the project
 # those features are basics text analysis
 

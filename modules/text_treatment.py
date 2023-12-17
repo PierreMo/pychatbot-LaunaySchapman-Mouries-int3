@@ -1,5 +1,6 @@
 # pychatbot-LaunaySchapman-Mouries-int3
 # Launay-Schapman Alexis and Pierre Mouriès
+
 # role of the file: This module is made to deal with files and texts (beginning of the part I of the project)
 # the main function is corpus_cleaning which use the others functions to clean a directory of text in a cleaned directory
 

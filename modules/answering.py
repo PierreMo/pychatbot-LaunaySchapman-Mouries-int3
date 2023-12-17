@@ -1,5 +1,6 @@
 # pychatbot-LaunaySchapman-Mouries-int3
 # Launay-Schapman Alexis and Pierre Mouriès
+
 # role of the file: Part II of the project: computation on a question, similarity with texts, finding an "answer"
 
 
@@ -21,19 +22,11 @@ IDF_corpus = cmp.IDF
 
 # PART II
 # 1
-have_tok_run = False
-
-
 def tokenization(question: str) -> list:
     tx.write_in_file('./modules/question.txt', question)
     lowercase = tx.file_in_lowercase('./modules/question.txt')
     tx.write_in_file('./modules/question.txt', lowercase)
     question_cleaned = tx.file_cleaning('./modules/question.txt')
-    global have_tok_run
-    if not have_tok_run:
-        with open('./modules/historic.txt', 'a') as f:
-            f.write('QUESTION: ' + question_cleaned + '\n')
-        have_tok_run = True
     return question_cleaned.split()
 
 
@@ -146,7 +139,7 @@ def I_CAN_ANSWER_WHAT_YOU_WANT(question: str):
         i += 1
 
     if i == len(full_text):
-        return 'Error not found'
+        return "Sorry, I didn't understand"
     return full_text[i]
 
 
@@ -156,20 +149,13 @@ def refine_answer(question: str) -> str:
     :return: an answer from the text with a litle polite formula at the beginning
     """
     answer = I_CAN_ANSWER_WHAT_YOU_WANT(question)
-
-    if "Comment" in question or "Peux-tu" in question:
-        if 123 > ord(answer[0]) > 96:
-            answer = chr(ord(answer[0]) - 32) + answer[1:]
-
-        if "Comment" in question:
-            result = "Après analyse, " + answer
-        elif "Peux-tu" in question:
-            result = "Oui, bien sûr!" + answer
-    else:
+    if"Comment" in question or "Pourquoi" in question or "Quel" in question or "Quels" in question or "Quelle" in question or "Quelles" in question or "Qui" in question or "Quand" in question or "Où" in question:
         if 64 > ord(answer[0]) > 91:
             answer = chr(ord(answer[0]) + 32) + answer[1:]
 
-        if "Pourquoi" in question:
+        if "Comment" in question:
+            result = "Après analyse, " + answer
+        elif "Pourquoi" in question:
             result = "Car, " + answer
         elif "Quel" in question or "Quels" in question or "Quelle" in question or "Quelles" in question:
             result = "Selon mes recherches," + answer
@@ -179,11 +165,21 @@ def refine_answer(question: str) -> str:
             result = "Suite à l'analyse de document historique,  " + answer
         elif "Où" in question:
             result = "Lors de " + answer
+    else:
+        if 123 > ord(answer[0]) > 96:
+            answer = chr(ord(answer[0]) - 32) + answer[1:]
 
-        with open('./modules/historic.txt', 'a') as f:
-            f.write('ANSWER: ' + result + '\n\n')
+        if "Peux-tu" in question:
+            result = "Oui, bien sûr!" + answer
+        else:
+            result = answer
 
-        return result
+    with open('./modules/historic.txt', 'a') as f:
+        f.write('QUESTION: ' + question + '\n')
+    with open('./modules/historic.txt', 'a') as f:
+        f.write('ANSWER: ' + result + '\n\n')
+
+    return result
 
 
 # bonus
@@ -191,7 +187,14 @@ def give_historic() -> list:
     """
     Gives historic (every questions and answers are stored in a file)
     """
-    with open('./modules/historic.txt', 'r') as f:
-        histo = f.readlines()
-
+    try:
+        with open('./modules/historic.txt', 'r') as f:
+            histo = f.readlines()
+    except FileNotFoundError:
+        return ["You haven't asked any questions"]
     return histo
+
+def clean_historic():
+    with open('./modules/historic.txt', 'w') as f:
+        f.write('Historic:')
+    return 'Done'

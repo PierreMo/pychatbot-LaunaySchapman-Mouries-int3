@@ -1,5 +1,6 @@
 # pychatbot-LaunaySchapman-Mouries-int3
 # Launay-Schapman Alexis and Pierre Mouriès
+
 # role of the file: This module is used to compute the TF-IDF of words in a text corpus
 # at the end of this file globals variables of the project are created using its functions
 
