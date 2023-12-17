@@ -14,13 +14,13 @@ IDF_corpus = cmp.IDF
 # 1
 have_tok_run =False
 def tokenization(question : str) -> list:
-    tx.write_in_file('../question.txt', question)
-    lowercase = tx.file_in_lowercase('../question.txt')
-    tx.write_in_file('../question.txt', lowercase)
-    question_cleaned = tx.file_cleaning('../question.txt')
+    tx.write_in_file('./modules/question.txt', question)
+    lowercase = tx.file_in_lowercase('./modules/question.txt')
+    tx.write_in_file('./modules/question.txt', lowercase)
+    question_cleaned = tx.file_cleaning('./modules/question.txt')
     global have_tok_run
     if not have_tok_run:
-        with open('../historic.txt', 'a') as f:
+        with open('./modules/historic.txt', 'a') as f:
             f.write('QUESTION: '+ question_cleaned + '\n')
         have_tok_run =True
     return question_cleaned.split()
@@ -113,6 +113,10 @@ def most_revelant(question_vector : list) -> str:
 # 6
 
 def I_CAN_ANSWER_WHAT_YOU_WANT(question : str):
+    """
+    :param question: question to answer
+    :return: the answer to the question
+    """
     question_tf_idf = TF_IDF_vector_question(question)
     text_target = most_revelant(question_tf_idf)
     highest_tf_idf = index_of_maxi(question_tf_idf)

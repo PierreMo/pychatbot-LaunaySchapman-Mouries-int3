@@ -60,7 +60,7 @@ def new_folder(name):
     do nothing if it already exists (I saw how to catch an error last year)
     '''
     try :
-        os.mkdir('../name')
+        os.mkdir('./'+name)
     except FileExistsError:
        pass
 
