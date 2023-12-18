@@ -149,7 +149,7 @@ def refine_answer(question: str) -> str:
     :return: an answer from the text with a litle polite formula at the beginning
     """
     answer = I_CAN_ANSWER_WHAT_YOU_WANT(question)
-    if"Comment" in question or "Pourquoi" in question or "Quel" in question or "Quels" in question or "Quelle" in question or "Quelles" in question or "Qui" in question or "Quand" in question or "Où" in question:
+    if "Comment" in question or "Pourquoi" in question or "Quel" in question or "Quels" in question or "Quelle" in question or "Quelles" in question or "Qui" in question or "Quand" in question or "Où" in question:
         if 64 > ord(answer[0]) > 91:
             answer = chr(ord(answer[0]) + 32) + answer[1:]
 
