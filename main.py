@@ -38,15 +38,16 @@ while running:
             case "f":
                   print('------------------------------------------------------------------------')
                   print("Features:")
+                  print("Enter a number of the list:")
                   featuring = True
                   while featuring:
-                        print("Choose a number :" + "\n"
+                        print("Option :" + "\n"
                               "     1) The list of leasts important words." + "\n"
-                              "     2) The list of more important words (highest TD-IDF)." + "\n"
-                              "     3) The most repeated word(s) by President Chirac." + "\n"
-                              "     4) The name(s) of the president(s) who spoke of the 'Nation' and the one who repeated it the most times." + "\n"
-                              "     5) The first president to talk about climate (“climat”) and/or ecology (“écologie”)." + "\n"
-                              "     6) Word(s) which all the president mention (excepti the so-called 'unimportant' words)." + "\n"
+                              "     2) The list of more important words (highest TD-IDF)" + "\n"
+                              "     3) The most repeated word(s) by President Chirac" + "\n"
+                              "     4) The name(s) of the president(s) who spoke of the 'Nation' and the one who repeated it the most times" + "\n"
+                              "     5) The first president to talk about climate (“climat”) and/or ecology (“écologie”)" + "\n"
+                              "     6) Word(s) which all the president mention (excepti the so-called 'unimportant' words)" + "\n"
                               "     7) Main menu"
                         )
 
@@ -76,7 +77,7 @@ while running:
                                     words_mention = features.all_said()
                                     print('The presidents all say: ', end=' ')
                                     tx.print_list(words_mention)
-                              case "7":
+                              case "6":
                                     featuring = False
                               case other:
                                     print("Enter a word of the list please")
@@ -85,10 +86,10 @@ while running:
                   print("Features:")
                   chatboting = True
                   while chatboting:
-                        print("You can write your question or enter one choose one of these options:"+ "\n"
+                        print("You can ask a question or:"+ "\n"
                               "     - h for your historic," + "\n"
-                              "     - c for clean your historic" + "\n"
-                              "     - m for the main menu")
+                              "     - m for the main menu" + "\n"
+                              "     - c for clean your historic")
                         question = input()
                         print()
                         match question:
