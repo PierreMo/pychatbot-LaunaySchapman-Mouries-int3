@@ -118,7 +118,7 @@ def write_in_file(file:str, content : str):
     Take a destination path of txt file and a string as parameter.
     Write the string in the file.
     '''
-    with open(file, 'w') as f:
+    with open(file, 'w', encoding='utf-8') as f:
         f.write(content+'\n')
 def read_str_in_file(file:str) -> str:
     '''
@@ -126,7 +126,7 @@ def read_str_in_file(file:str) -> str:
     Return the content of the file as a string without the last character (\n often)
     This is made to deal with one line files
     '''
-    with open(file, 'r') as f:
+    with open(file, 'r', encoding='utf-8') as f:
         #, encoding='utf-8'
         result = f.readline()[:-1]
     return result

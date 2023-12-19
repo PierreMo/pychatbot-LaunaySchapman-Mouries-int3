@@ -24,6 +24,11 @@ for file in FILES:
 
 
 def least():
+    """
+    :param : none
+    :return: least important words of the corpus
+    We sum line per line the TF-IDF matrix to find the least important, line, so the least important word
+    """
     sum_list = []
     # temporary will be replaced by a min
     for i in range(len(TF_IDF_MATRIX)):
@@ -39,6 +44,11 @@ def least():
     return unimportants
 
 def finding_highest_tfidf() -> list:
+    """
+    :param: None
+    :return: the word with the highest tfidf
+    We run through the TF-IDF matrix to find the highest tfidf
+    """
     maxi = TF_IDF_MATRIX[0][0]
     pos = {0}
     for i in range(len(TF_IDF_MATRIX)):
@@ -53,6 +63,10 @@ def finding_highest_tfidf() -> list:
     return toprint
 
 def finding_highest_tf_txtname(element : str) -> list:
+    """
+    :param: element, a word
+    :return: the text where the word appears the most (= highest tf)
+    """
     # Obtaining the speeches file in which element appears in the file name
     chirac_speeches_files = [i for i in range(len(FILES)) if str(element) in FILES[i]]
     # Getting the TF dict of the speeches
@@ -101,7 +115,10 @@ def nation() -> tuple:
 
 
 def climat() -> list:
-    print(TF_list)
+    """
+    :param: None
+    :return: list of the president who said the words écologie or climat
+    """
     # index of presidents who spoke about nation (index coherent to names and files)
     # creating a dictionnary in which key are president who spoke about nation and value is the number of time he spoke about it
     # we need to do it because some president have many speeches
@@ -116,16 +133,17 @@ def climat() -> list:
 
 
 def all_said() -> list:
+    """
+    :param: None
+    :return: list of the word which are in all the text but are not unimportant
+    """
     unimportant = least()
     all_mentioned = []
     for word in WORDS:
-        print(word)
         isin = True
         i = 0
         while isin and i<len(TF_list):
             if word not in TF_list[i]:
-                print(word)
-                print()
                 isin = False
             i+=1
 

@@ -58,6 +58,10 @@ def IDF_creating(directory : str) -> dict:
 
 
 def TF_IDF_creating(directory : str) -> tuple:
+    """
+    :param directory: directory name with txt files inside
+    :return: tuple, TF-IDF matrix and list of words correspoding to the lines and list of text files corresponding the columns of the matrix
+    """
     # taking IDF from the IDF function
     IDF = IDF_creating(directory)
     # extracting the keys from IDF dict -> the words of the corpus

@@ -131,7 +131,7 @@ def I_CAN_ANSWER_WHAT_YOU_WANT(question: str):
     highest_tf_idf = index_of_maxi(question_tf_idf)
     word_target = WORDS[highest_tf_idf]
 
-    with open('./speeches/' + text_target, 'r') as f:
+    with open('./speeches/' + text_target, 'r', encoding='utf-8') as f:
         full_text = f.readlines()
 
     i = 0
